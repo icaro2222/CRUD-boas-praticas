@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use \App\Db\Notabase;
+use \App\Db\Database;
 use \PDO;
 
 class Aluno{
@@ -36,12 +36,10 @@ class Aluno{
    * @return boolean
    */
   public function cadastrar(){
-    //DEFINIR A Nota
-    $this->nota = date('Y-m-d H:i:s');
-
+    
     //INSERIR A ALUNO NO BANCO
-    $obNotabase = new Notabase('aluno');
-    $this->id = $obNotabase->insert([
+    $obDatabase = new Database('aluno');
+    $this->id = $obDatabase->insert([
                                       'nome'    => $this->nome,
                                       'endereco' => $this->endereco,
                                       'nota'      => $this->nota
@@ -56,7 +54,7 @@ class Aluno{
    * @return boolean
    */
   public function atualizar(){
-    return (new Notabase('aluno'))->update('id = '.$this->id,[
+    return (new Database('aluno'))->update('id = '.$this->id,[
                                                                 'nome'    => $this->nome,
                                                                 'endereco' => $this->endereco,
                                                                 'nota'      => $this->nota
@@ -68,7 +66,7 @@ class Aluno{
    * @return boolean
    */
   public function excluir(){
-    return (new Notabase('aluno'))->delete('id = '.$this->id);
+    return (new Database('aluno'))->delete('id = '.$this->id);
   }
 
   /**
@@ -79,7 +77,7 @@ class Aluno{
    * @return array
    */
   public static function getAlunos($where = null, $order = null, $limit = null){
-    return (new Notabase('aluno'))->select($where,$order,$limit)
+    return (new Database('aluno'))->select($where,$order,$limit)
                                   ->fetchAll(PDO::FETCH_CLASS,self::class);
   }
 
@@ -89,7 +87,7 @@ class Aluno{
    * @return Aluno
    */
   public static function getAluno($id){
-    return (new Notabase('aluno'))->select('id = '.$id)
+    return (new Database('aluno'))->select('id = '.$id)
                                   ->fetchObject(self::class);
   }
 

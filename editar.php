@@ -22,11 +22,11 @@ if(!$obAluno instanceof Aluno){
 }
 
 //VALIDAÇÃO DO POST
-if(isset($_POST['nome'],$_POST['descricao'],$_POST['ativo'])){
+if(isset($_POST['nome'],$_POST['endereco'],$_POST['nota'])){
 
   $obAluno->nome    = $_POST['nome'];
-  $obAluno->descricao = $_POST['endereco'];
-  $obAluno->ativo     = $_POST['ativo'];
+  $obAluno->descricenderecoao = $_POST['endereco'];
+  $obAluno->nota     = $_POST['nota'];
   $obAluno->atualizar();
 
   header('location: index.php?status=success');

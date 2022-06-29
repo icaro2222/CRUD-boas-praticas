@@ -17,10 +17,9 @@
   foreach($alunos as $aluno){
     $resultados .= '<tr>
                       <td>'.$aluno->id.'</td>
-                      <td>'.$aluno->titulo.'</td>
-                      <td>'.$aluno->descricao.'</td>
-                      <td>'.($aluno->ativo == 's' ? 'Ativo' : 'Inativo').'</td>
-                      <td>'.date('d/m/Y à\s H:i:s',strtotime($aluno->data)).'</td>
+                      <td>'.$aluno->nome.'</td>
+                      <td>'.$aluno->endereco.'</td>
+                      <td>'.$aluno->nota.'</td>
                       <td>
                         <a href="editar.php?id='.$aluno->id.'">
                           <button type="button" class="btn btn-primary">Editar</button>
@@ -33,7 +32,7 @@
   }
 
   $resultados = strlen($resultados) ? $resultados : '<tr>
-                                                       <td colspan="6" class="text-center">
+                                                       <td colspan="4" class="text-center">
                                                               Nenhuma aluno encontrada
                                                        </td>
                                                     </tr>';
@@ -58,8 +57,6 @@
             <th>Nome</th>
             <th>Endereço</th>
             <th>Nota</th>
-            <th>Data</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
